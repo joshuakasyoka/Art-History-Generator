@@ -19,7 +19,7 @@
 import _ from 'lodash'
 import questions from '../../src/data.js'
 export default {
-  name: 'HelloWorld',
+  name: 'WhichArtist',
   data () {
     return {
       index: 0,
