@@ -1,48 +1,61 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
+    <h1>{{ currentQuestion[index].painting }}</h1>
+    <div class="container">
+    <img :src="currentQuestion[index].img" alt="Questions Image">
+      <div class="answer-container">
+    <input type="text" v-model="answer" placeholder="Pablo Picasso">
+    <button @keydown.enter="checkAnswer" @click="checkAnswer" class="btn btn-primary">Submit</button>
+        <button @click="Help" class="btn btn-primary">?</button>
+      </div>
+      <h2 v-if="error">Oh no, Try Again!</h2>
+      <h2 v-if="showAnswer">{{currentQuestion[index].questionAnswer}}</h2>
+      <p v-if="showAnswer">{{currentQuestion[index].info}}</p>
+    </div>
   </div>
 </template>
 
 <script>
+import _ from 'lodash'
+import questions from '../../src/data.js'
 export default {
   name: 'HelloWorld',
-  props: {
-    msg: String
+  data () {
+    return {
+      index: 0,
+      answer: [],
+      currentQuestion: _.shuffle(questions),
+      showAnswer: false,
+      error: false
+    }
+  },
+  methods: {
+
+    checkAnswer () {
+      if (this.answer === this.currentQuestion[this.index].questionAnswer) {
+        this.index++
+        this.answer = []
+        this.showAnswer = false
+      } else if (this.answer !== this.currentQuestion[this.index].questionAnswer) {
+        this.error = true
+      }
+    },
+    Help () {
+      if (this.showAnswer === false) {
+       this.showAnswer = true;
+        this.error = false
+      }
+    }
   }
 }
+
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+
 <style scoped>
+
 h3 {
-  margin: 40px 0 0;
+  margin: 40px;
 }
 ul {
   list-style-type: none;
@@ -55,4 +68,41 @@ li {
 a {
   color: #42b983;
 }
+
+input {
+  padding: 3px;
+  margin-top: 10px;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button {
+  margin-top: 5px;
+  margin-left: 5px;
+  border: 0;
+  color: white;
+  background-color: #e57272;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+}
+
+button:hover {
+  opacity: 50%;
+}
+
+img {
+  height: 20%;
+  width: 20%
+}
+
+h3 {
+color: #e57272;
+}
+
+p {
+  margin-left: 500px;
+  margin-right: 500px;
+  text-align: justify;
+}
+
 </style>
