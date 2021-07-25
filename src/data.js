@@ -79,7 +79,7 @@ const questions = [
     },
     {
         painting: "Female Artist",
-        img: "https://4.bp.blogspot.com/-pLlaSiC1iL8/WahiyDdjOkI/AAAAAAAASTY/5tNwmo8sNQQJfLbn-6WeJrCYxM-TI1mJwCLcBGAs/w1200-h630-p-k-no-nu/Ernst-Ludwig-Kirchner-_Artistin-Marcella_1910-Br%25C3%25BCckeMuseumBerlin.jpg",
+        img: "https://uploads6.wikiart.org/images/ernst-ludwig-kirchner/female-artist.jpg!Large.jpg",
         questionAnswer: "Ernst Ludwig Kirchner",
         info: "Ernst Ludwig Kirchner was a German expressionist painter and printmaker and one of the founders of the artists group Die Brücke or \"The Bridge\", a key group leading to the foundation of Expressionism in 20th-century art."
     },

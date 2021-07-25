@@ -87,12 +87,7 @@ button {
 }
 
 button:hover {
-  opacity: 50%;
-}
-
-img {
-  height: 20%;
-  width: 20%
+  opacity: 80%;
 }
 
 h3 {
@@ -100,9 +95,29 @@ color: #e57272;
 }
 
 p {
-  margin-left: 500px;
-  margin-right: 500px;
-  text-align: justify;
+  text-align: center;
+  padding: 10px;
+
 }
 
+@media screen and (min-width: 320px) {
+
+  img {
+    width: 80%;
+    height: 80%;
+  }
+}
+
+@media screen and (min-width: 481px) {
+  img {
+    width: 30%;
+    height: 30%;
+  }
+
+  p {
+    text-align: center;
+    margin-left: 300px;
+    margin-right: 300px;
+  }
+}
 </style>
